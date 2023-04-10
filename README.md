@@ -7,6 +7,7 @@
 
 ## 1. Installation
 The app can be pulled from the Docker Hub, the image is debbyn1064/popgroup-app.
+Please ensure that the django secret key is added to the settings.py file.
 To rebuild, please follow the steps in the command.txt file.
 
 ## 2. The Purpose of the Application.
