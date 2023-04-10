@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<!--L2T23 Django V Capstone Project
+       Poll new user registration page 
+     Sources - thanks to www.w3schools.com and https://docs.djangoproject.com for awesome coding and
+      inspiration for everything!
+     Code snippets from my previous assignments - L2T18 to 22 Django 1 through to Django v
+     and freepngimg.com for the beautiful python and other pics-->
+<html lang="en">
+<head>
+    <title>login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!--Provide base for formating of text for the whole page and to change the colours of the web urls. -->
+    <style>
+           
+        body{
+            background-color:chartreuse;
+            font-family: "Rancho", sans-serif;
+            color:rgb(238, 57, 69);
+            padding-left: 150px;
+        }
+         /* universal link */     
+         a:link {
+                color: rgb(0, 195, 255);
+            }
+
+        /* visited link */
+            a:visited {
+                color: purple;
+            }
+
+        /* mouse over link */
+            a:hover {
+                color: rgb(243, 37, 185);
+            }
+
+        /* selected link */
+            a:active {
+                color: rgb(251, 255, 0);
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col">
+                <h1> Login User </h1>
+                <br/><br/>
+        
+                {% if error_message %}
+                    <p class="text-danger"><h2><strong><em>{{error_message}}</strong></em></h2></p>
+                    <a href="{% url 'popmania:index' %}"><h4><em><b>Please return to the home page to register if not registered.</b></em></h4></a>
+                {% endif %}
+
+                <form action="{% url 'popmania:authenticate_user' %}" method="post">
+                    {% csrf_token %}
+                    <h2><label>User</label>
+                        <input type="text" name="username" placeholder="User" required></h2>
+                    <br/><br/>
+                    <h2><label>Password</label>
+                        <input type="password" name="password" required></h2>
+                    <br/><br/>
+                    <h2><input type="submit" value="Login" /></h2>
+                    <br/><br/>
+                </form>
+            </div>
+            <div class="col">
+                <img src ="{% static 'assets/GuitarAndNotes.png' %}" alt = "WELCOME!!"  
+                    class="mx-auto d-block" width="500" height="500">
+            </div>        
+        </div>
+    </div>
+</body>
+
+</html>

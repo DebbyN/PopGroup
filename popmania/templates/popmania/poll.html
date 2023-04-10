@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<!--L2T23 Django V Capstone Project
+       Poll new user registration page 
+     Sources - thanks to www.w3schools.com and https://docs.djangoproject.com for awesome coding and
+      inspiration for everything!
+     Code snippets from my previous assignments - L2T18 to 22 Django 1 through to Django v
+     and freepngimg.com for the beautiful python and other pics-->
+<html lang="en">
+<head>
+    <title>Polls</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--Provide base for formating of text for the whole page and to change the colours of the web urls. -->
+    <style>
+        
+        a:link {
+            color: rgb(0, 195, 255);
+        }
+
+        /* visited link */
+        a:visited {
+            color: limegreen;
+        }
+
+        /* mouse over link */
+        a:hover {
+        color: aqua;
+        }
+
+        /* selected link */
+        a:active {
+            color: rgb(251, 255, 0);
+        }
+
+        .text-font {
+             
+             font-family: "Rancho", sans-serif;
+             color: rgb(181, 112, 206)
+         
+         }
+
+     </style>
+</head>
+<body>
+    <div class="p-5 bg-light">
+        <!-- Display questions for selection to vote on-->
+        <div class ="text-font"><h1 class="font-effect-shadow-multiple"><em>Hello Fans, Welcome our Pop Python Polling Site</em></h1>
+        <div class="text-font"><h3 class="font-effect-shadow-multiple"><em>Take a vote on our past hits and on our latest song.</em></h3>
+        <br />
+       
+        {% if latest_question_list %}
+            {% csrf_token %}
+        <ul>
+            {% for question in latest_question_list %}
+                <li>
+                    <h2><a href = "{% url 'popmania:detail' question.id %}">
+                        {{ question.question_text }}
+                    </h2></a>
+                </li>
+                
+            {% endfor %}
+        </ul>
+    </div>
+        {% else %}
+        <p class="text-danger"><h2><b>No polls are available.</b></h2></p>
+        {% endif %}
+     <br/><br/>   
+    <!--Logout when done with voting-->
+    <a href = "{% url 'popmania:logout' %}">  <h2><b><div class="ps-5">Logout</b></h2></a> 
+</body>
+</html>
